@@ -1,0 +1,53 @@
+from __future__ import annotations
+
+DEFAULT_CURRENCIES = ["UGX", "TZS", "KES", "BWP", "BDT", "LKR", "VND", "IDR"]
+
+
+def default_scenario() -> dict:
+    weights = {ccy: 1.0 / len(DEFAULT_CURRENCIES) for ccy in DEFAULT_CURRENCIES}
+    return {
+        "currencies": DEFAULT_CURRENCIES.copy(),
+        "weights": weights,
+        "notional_usd": 100_000_000,
+        "tenor_years": 5,
+        "tenor_mix": {"3Y": 0.0, "5Y": 1.0, "7Y": 0.0},
+        "ccs_share": 0.8,
+        "ndf_share": 0.2,
+        "mtm_phase": "phase1",
+        "collateral_mode": "none",
+        "csa_threshold": 0.0,
+        "csa_mta": 0.0,
+        "pd_annual": 0.04,
+        "lgd": 1.0,
+        "default_model": "constant_hazard",
+        "fx_default_dependence": False,
+        "dependence_beta": 0.0,
+        "client_fee_bps": 50.0,
+        "opex_bps": 10.0,
+        "reserve_bps": 5.0,
+        "coverage_pct": 1.0,
+        "attachment": 0.0,
+        "detachment": 1.0,
+        "limit_pct": 1.0,
+        "guarantee_mode": "default_triggered",
+        "capital_method": "ES",
+        "confidence": 0.995,
+        "horizon_years": 1,
+        "overlay_pct": 0.20,
+        "target_leverage": 15.0,
+        "simulation_mode": "historical_bootstrap",
+        "n_paths": 10_000,
+        "fast_mode": False,
+        "quote_inversion": {},
+        "stress_correlation": 1.0,
+        "vol_multiplier": 1.0,
+        "equity_pct": 0.10,
+        "mezz_pct": 0.10,
+        "mezz_coupon_pct": 0.10,
+        "senior_limit_pct": 0.80,
+        "senior_fee_bps": 100.0,
+        "senior_capital_factor": 0.2,
+        "settlement_lag_days": 30,
+        "dispute_delay_factor": 1.0,
+        "liquidity_floor_pct": 0.01,
+    }
